@@ -18,7 +18,7 @@ class InsightImages(Bot):
             self.init()
 
         while True:
-            if self.state["last_time"] > datetime.now() - timedelta(minutes=1):
+            if self.state["last_time"] > datetime.now() - timedelta(minutes=30):
                 sleep(120)
                 continue
 
