@@ -10,7 +10,7 @@ from insight import fetch_images
 
 class InsightImages(Bot):
     def init(self):
-        self.state["last_img_time"] = datetime(2018, 11, 27, 20, 24, 51).replace(tzinfo=pytz.utc)
+        self.state["last_img_time"] = datetime(2020, 9, 5, 0, 0, 0).replace(tzinfo=pytz.utc)
         self.state["last_time"] = datetime.now() - timedelta(days=1)
 
     def main(self):
@@ -32,6 +32,7 @@ class InsightImages(Bot):
                 self.state["last_time"] = datetime.now()
                 break
 
+            self.save_state()
             sleep(30)
 
     def post_image(self, img):
@@ -48,7 +49,7 @@ class InsightImages(Bot):
                 + "\n\nTaken on: "
                 + img["date_taken"].strftime("%Y/%m/%d %H:%M:%S")
             )
-            self.post(text, downloadfile)
+            self.post(text, imagefile=downloadfile.name)
 
 
 InsightImages("insightimages").run()
